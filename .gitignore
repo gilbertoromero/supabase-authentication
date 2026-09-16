@@ -41,5 +41,5 @@ pnpm-debug.log*
 # Test coverage
 coverage/
 
-# Local learning notes — not part of the deliverable
-docs/tsconfig-base.md
+# Local notes
+notes/
