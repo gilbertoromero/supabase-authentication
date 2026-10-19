@@ -17,7 +17,7 @@ export function createApp(): Express {
       context: () => ({ userId: null }),
       formatError: (err) => {
         const e = err as GraphQLError
-        // An unexpected throw: cause exists and is not a GraphQLError.s
+        // An unexpected throw: cause exists and is not a GraphQLError
         if (e.cause && !(e.cause instanceof GraphQLError)) {
           console.error('[graphql] masked internal error:', e.cause)
           return new GraphQLError('Internal server error', {

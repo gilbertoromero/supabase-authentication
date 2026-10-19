@@ -2,20 +2,10 @@ packages:
   - 'apps/*'
   - 'packages/*'
 
-# pnpm >=10 blocks dependency lifecycle scripts by default, so packages that
-# need a native build step must be allowlisted here or they fail later with
-# misleading runtime errors.
-#
-# Only list packages actually in the tree that actually have an install hook.
-# When pnpm blocks something new it says so at the end of `pnpm install`;
-# run `pnpm approve-builds` to see the list and add it here deliberately.
+# pnpm blocks dependency install scripts unless they are listed here.
+# true = run it, false = reviewed and deliberately skipped.
+# Only list packages actually in the tree; `pnpm install` names new ones.
 allowBuilds:
+  # tsx's dependency. The native binary comes from an optional platform
+  # package, so its postinstall (a binary check) is not needed.
   esbuild: false
-
-onlyBuiltDependencies:
-  # `prisma` CLI has a preinstall hook that fetches query-engine binaries.
-  - prisma
-  - '@prisma/engines'
-  # Real optionalDependency of next@16 (^0.35.4); native image codecs,
-  # required for next/image optimization in production.
-  - sharp
