@@ -1,6 +1,6 @@
 packages:
-  - "apps/*"
-  - "packages/*"
+  - 'apps/*'
+  - 'packages/*'
 
 # pnpm >=10 blocks dependency lifecycle scripts by default, so packages that
 # need a native build step must be allowlisted here or they fail later with
@@ -9,10 +9,13 @@ packages:
 # Only list packages actually in the tree that actually have an install hook.
 # When pnpm blocks something new it says so at the end of `pnpm install`;
 # run `pnpm approve-builds` to see the list and add it here deliberately.
+allowBuilds:
+  esbuild: false
+
 onlyBuiltDependencies:
   # `prisma` CLI has a preinstall hook that fetches query-engine binaries.
   - prisma
-  - "@prisma/engines"
+  - '@prisma/engines'
   # Real optionalDependency of next@16 (^0.35.4); native image codecs,
   # required for next/image optimization in production.
   - sharp
