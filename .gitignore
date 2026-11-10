@@ -16,6 +16,9 @@ out/
 .env.*.local
 !.env.example
 
+#Generated code
+apps/api/src/generated
+
 # Prisma
 prisma/*.db
 prisma/*.db-journal
