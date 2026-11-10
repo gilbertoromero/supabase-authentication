@@ -13,9 +13,8 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  boom: Scalars['String']['output'];
   /** Liveness probe. Returns "ok". */
-  health: Scalars['Int']['output'];
+  health: Scalars['String']['output'];
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -93,7 +92,6 @@ export type DirectiveResolverFn<TResult = Record<PropertyKey, never>, TParent = 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Query: ResolverTypeWrapper<Record<PropertyKey, never>>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
 }>;
@@ -101,14 +99,12 @@ export type ResolversTypes = ResolversObject<{
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean']['output'];
-  Int: Scalars['Int']['output'];
   Query: Record<PropertyKey, never>;
   String: Scalars['String']['output'];
 }>;
 
 export type QueryResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  boom?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  health?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  health?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 }>;
 
 export type Resolvers<ContextType = GraphQLContext> = ResolversObject<{

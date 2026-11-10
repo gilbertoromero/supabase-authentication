@@ -6,6 +6,9 @@ packages:
 # true = run it, false = reviewed and deliberately skipped.
 # Only list packages actually in the tree; `pnpm install` names new ones.
 allowBuilds:
+  '@prisma/engines': true
   # tsx's dependency. The native binary comes from an optional platform
   # package, so its postinstall (a binary check) is not needed.
   esbuild: false
+  prisma: true
+  # Pre-fetch Prisma's schema engine at install time instead of on first use.

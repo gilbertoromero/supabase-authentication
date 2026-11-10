@@ -2,6 +2,5 @@ type Query {
   """
   Liveness probe. Returns "ok".
   """
-  health: Int!
-  boom: String!
+  health: String!
 }

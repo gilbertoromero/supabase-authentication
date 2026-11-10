@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+
+  @@map("user_role")
+}
+
+enum Visibility {
+  PUBLIC
+  PRIVATE
+
+  @@map("snippet_visibility")
+}
+
+/// App profile. `id` is the Supabase `auth.users.id` (the JWT `sub`).
+model User {
+  id        String    @id @db.Uuid
+  email     String    @unique
+  name      String?
+  role      Role      @default(USER)
+  snippets  Snippet[]
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  @@map("users")
+}
+
+model Snippet {
+  id         String     @id @default(uuid()) @db.Uuid
+  title      String
+  body       String
+  language   String     @default("typescript")
+  visibility Visibility @default(PRIVATE)
+  author     User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId   String     @map("author_id") @db.Uuid
+  createdAt  DateTime   @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt  DateTime   @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@index([authorId])
+  @@index([visibility, createdAt])
+  @@map("snippets")
+}

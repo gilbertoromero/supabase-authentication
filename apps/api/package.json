@@ -14,9 +14,12 @@
   },
   "dependencies": {
     "@graphql-tools/schema": "10.1.1",
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
     "express": "5.2.1",
     "graphql": "17.0.2",
-    "graphql-http": "1.23.0"
+    "graphql-http": "1.23.0",
+    "pg": "8.23.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "7.4.1",
@@ -24,6 +27,8 @@
     "@graphql-codegen/typescript-resolvers": "6.1.0",
     "@types/express": "5.0.6",
     "@types/node": "^26.6.5",
+    "@types/pg": "8.23.1",
+    "prisma": "7.10.0",
     "tsx": "4.23.13",
     "typescript": "6.0.3"
   }
